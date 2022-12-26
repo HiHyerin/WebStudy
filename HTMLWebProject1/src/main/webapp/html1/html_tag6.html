@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+	태그의 종류
+	=> 태그안에 속성
+	=> 응용 (화면 제작)
+	=> 화면 디자인(CSS)
+	=> 클릭시, 오버 ==> 자바스크립트
+	
+ -->
+ <style>
+ td{
+ 	text-align: center
+ 	
+ }
+ #foot{
+ 	text-align: right;
+ }
+ </style>
+</head>
+<body>
+	<h1> 성적표 </h1>
+	<table border=1 width=450>
+		<tr>
+			<thead><!-- 제목 --> <!-- VueJS,ReactJS는 thead안쓰면 오류 --> 
+				<tr>
+					<th>학번</th>
+					<th>이름</th>
+					<th>국어</th>
+					<th>영어</th>
+					<th>수학</th>
+				</tr>
+			</thead>
+			<tbody> <!-- 실제 데이터 출력 -->
+				<tr>
+					<td>1</td>
+					<td>홍길동</td>
+					<td>89</td>
+					<td>98</td>
+					<td>78</td>
+				</tr>
+				
+				<tr>
+					<td>2</td>
+					<td>붐청이</td>
+					<td>89</td>
+					<td>98</td>
+					<td>78</td>
+				</tr>
+				
+				<tr>
+					<td>3</td>
+					<td>둘리</td>
+					<td>89</td>
+					<td>98</td>
+					<td>78</td>
+				</tr>
+
+				
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5" id=foot>총점수:795</td>
+					<!-- 
+						 colspan = 열 병합
+						 rowspan = 행 병합
+					 -->
+				</tr>
+			</tfoot>
+		</tr>
+	</table>
+</body>
+</html>
