@@ -1,0 +1,49 @@
+<!-- 
+	선택자(태그를 선택)
+		= css
+		= 크롤링
+		= javaScript(Ajax,Jquery,Vue,React) -> 태그를 제어
+		
+	1) 선택자 종류
+		= 태그명
+		= 구분자(속성)
+			- ID
+			- CLASS
+		-----------------
+		= 인접선택자
+		= 자손선택자 : 태그명>태그명
+		= 후손선택자 : 태그명 태그명
+		= 가상선택자 : 포함문자, 시작문자, 끝문자
+			예) img[src*=값], img[src^=http|https]
+				img[src$='png|jpg|gif']
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_selector1</title>
+<style type="text/css">
+h1#js{
+	color:red;                 /** 이렇게 하면 h1 다 빨갛게 됨 , 그래서 #씀**/
+}
+h1.hc{color:orange;}
+h1:first-child {
+	color:blue;
+}
+h1:last-child {
+	color:pink;
+}
+</style>
+</head>
+<body>
+	<h1>java</h1>
+	<h1>oracle</h1>
+	<h1 class="hc">html/css</h1>
+	<h1 id="js">javascript</h1>
+	<h1 class="hc">jsp</h1>
+	
+	<h1>spring</h1>
+	<h1>aws</h1>
+</body>
+</html>

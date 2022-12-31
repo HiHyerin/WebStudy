@@ -1,0 +1,98 @@
+<!-- p.95 입력양식 태그(회원가입 폼, 글쓰기 폼, 댓글, 장바구니(수량))
+=> input, textarea, select
+=> form : 입력된 데이터나 선택된 데이터를 한번에 모아서 전송
+		=> 전송방식
+			get
+			post 
+=> <label> , <fieldset>
+1)
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	ID:<input type=text size=15><br>
+	PW:<input type=password size=15><br>
+	<input type=submit value="로그인">
+	<input type=button value="취소"> 
+	<p>
+	<table width=350>
+		<tr>
+			<td align=right width=25%>ID</td>
+			<td align=left width=75%><input type=password size=15></td>
+			
+		</tr>
+		<tr>
+			<td align=right width=25%>PWD</td>
+			<td align=left width=75%><input type=password size=15></td>
+			
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<input type=submit value="로그인">
+			<input type=button value="취소">
+			</td>
+			
+		</tr>
+		
+	</table>
+	<hr>
+	<!-- 라디오 버튼은 1개 선택 = 그룹속성을 준다(name이 동일할 떄) -->
+	성별 : <input type="radio" checked name="sex">남자
+			<input type="radio" checked name="sex">여자
+			
+	<hr>
+	취미 : <input type="checkbox"> 운동
+		 <input type="checkbox"> 등산
+		 <input type="checkbox"> 게임
+		 <input type="checkbox"> 뜨개질
+		 <input type="checkbox"> 여행
+	
+	<hr>
+	파일선택 : <input type=file size=20>
+	
+	<hr>
+	생년월일 : <input type=date size=20>
+	
+	<hr>
+	나이 : <input type="number" min="10" max="70"> <!-- 최대,최소값 꼭 써야함 -->
+	
+	<hr>
+	범위 : <input type="range" min="110" max="500">
+	
+	<hr>
+	버튼 종류 : 
+			<input type= submit value="전송">
+			<input type= reset value="초기화">
+			<input type= button value="취소">
+			<input type= image src="../image/f1.jpg">
+			<button>글쓰기</button>
+	<hr>
+	선택 : 
+	<select>
+	<option>02</option>
+	<option>031</option>
+	<option>032</option>
+	<option>033</option>
+	<option>061</option>
+	</select>
+	
+	
+	<hr>
+	내용 : <textarea rows="8" cols="30"></textarea>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

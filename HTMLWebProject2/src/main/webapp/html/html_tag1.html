@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+<meta charset="EUC-KR">
+<title>맛집</title>
+</head>
+<body>
+	<!-- 
+		<img> 이미지 출력
+		--------------- png, gif,jpg만 출력 가능
+		1) 속성
+		
+	 -->
+	 
+	<img src="../image/f1.jpg" title="잡채">
+	<img src="../image/f2.jpg" title="미역국">
+	<img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/11/07/ca8c24608189aaf9d376f14b3f3be57c1_m.jpg" width=100 height="100">
+	<!--  <img src="../image/f3.jpg" width=100%> <!-- 100% : 브라우저 크기 => height는 자동으로 설정 -->
+	<p>
+	<img src="../image/f4.jpg" title="감자탕"><br>
+	<b>백종원 감자탕 레시피, 생각보다 너무 쉽고 맛있어요</b>
+	<p>
+	<figure> <!-- 이미지와 설명을 동시에 처리 : CARD -->
+		<img src="../image/f4.jpg">
+		<figcaption>백종원 감자탕 레시피</figcaption>
+	</figure>
+	<p>
+	<img src="../image/food.jpg" usemap="#food">
+	<map name="food">
+		<area shape="rect" coords="303,105,339,150" href="html_tag2.html">
+		<!-- 
+			에러
+				404 : 파일이 존재x
+				403 : 보안 -> 접속거부
+				500 : 자바오류
+				412 : 한글변환
+				400 :매칭이 안되는 경우 => jsp에서는 없다
+				------------------
+				=> [] -> String
+					double -> boolean	==> 오류
+		 -->
+	</map> 
+	<p>
+	<figure>
+		<embed src="http://youtube.com/embed/K4KR4J-yBMw" width="800" height="530">
+		<figcaption>영웅</figcaption>
+	</figure>
+	<p>
+	<figure>
+		<iframe src="http://youtube.com/embed/K4KR4J-yBMw" width="800" height="530"></iframe>
+		<figcaption>영웅</figcaption>
+	</figure>
+	<!-- 
+		일반 사이트 : <embed>
+		vuejs, reactjs = <iframe>을 사용
+	 -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
