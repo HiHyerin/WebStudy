@@ -77,6 +77,7 @@ public class ItemDAO {
 				ItemCategoryVO vo=new ItemCategoryVO();
 				vo.setIcno(rs.getInt(1));
 				vo.setName(rs.getString(2));
+				list.add(vo);
 				
 			}
 			rs.close();

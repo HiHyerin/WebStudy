@@ -18,7 +18,7 @@ ICNO                    NUMBER
 
 public class ItemVO {
 	private int ino,icno;
-	private String name,image,description,status, price,discount;
+	private String name,image,description,description_2,status, price,discount;
 	private int stock=0,like_cnt=0,jjim_cnt=0;
 	private String delivery_price="3000원(50,000원 이상 무료)";
 	public int getIno() {
@@ -89,6 +89,15 @@ public class ItemVO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	
+	public String getDescription_2() {
+		return description_2;
+	}
+	public void setDescription_2(String description_2) {
+		this.description_2 = description_2;
 	}
 	public String getStatus() {
 		return status;
