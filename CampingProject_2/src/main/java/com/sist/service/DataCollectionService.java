@@ -159,11 +159,13 @@ public class DataCollectionService {
 					ivo.setDelivery_price(delivery_price);
 					
 					// like_cnt
+//					like_cnt=(int)(Math.random()*100)+1;
 					System.out.println(like_cnt);
 					ivo.setLike_cnt(like_cnt);
 					
 					
 					// jjim_cnt
+//					jjim_cnt=(int)(Math.random()*100)+1;
 					System.out.println(jjim_cnt);
 					ivo.setJjim_cnt(jjim_cnt);
 					
