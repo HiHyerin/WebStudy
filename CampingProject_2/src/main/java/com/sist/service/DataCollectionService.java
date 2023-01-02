@@ -75,18 +75,18 @@ public class DataCollectionService {
 				//Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=47&page="+i).get(); //cno=11
 				//Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=45&page="+i).get(); //cno=10(5page)
 				//Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=92&page="+i).get(); //cno=9(3page)
-				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=42&page="+i).get(); //cno=8(4page) 화로/비비큐
+				//Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=42&page="+i).get(); //cno=8(4page) 화로/비비큐
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=26&page="+i).get(); //cno=7(9page) 식기/쿠커
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=42&page="+i).get(); //cno=6(4page) 스토브/랜턴
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=15&page="+i).get(); //cno=5(4page) 베드,침구,매트
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=28&page="+i).get(); //cno=4(6page) 테이블/체어
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=282&page="+i).get(); //cno=3(4page) 폴대
 //				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=210&page="+i).get(); //cno=2(2page) 타프/쉘터
-//				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=201&page="+i).get(); //cno=1(5page) 텐트
+				Document doc=Jsoup.connect("https://campinglist.co.kr/product/list.html?cate_no=201&page="+i).get(); //cno=1(5page) 텐트
 				Elements link=doc.select("div.prdImg a");// 제품 상세보기 링크
 			// <a href="/product/텐트마크디자인-서커스-이너-세트-하프-이너텐트-그라운드시트-tm-1812/3342/category/201/display/1/" name="anchorBoxName_3342"><img src="//campinglist.co.kr/web/product/medium/202212/73c83770a31ef46a7db3d6e03c946bf7.jpg" onmouseover="this.src='//campinglist.co.kr/web/product/big/202212/d784a5b70cb59d19bc2ad541081e065f.jpg'" onmouseout="this.src='//campinglist.co.kr/web/product/medium/202212/73c83770a31ef46a7db3d6e03c946bf7.jpg'" id="eListPrdImage3342_1" alt="텐트마크디자인 서커스 이너 세트 하프 (이너텐트 + 그라운드시트) (TM-1812)"></a>
 				// 링크가 제대로 들어왔는지 확인
-				
+				System.out.println(link.size());
 				
 				for(int j=0;j<link.size();j++) {
 					

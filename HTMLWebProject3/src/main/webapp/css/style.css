@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* 외부 css
+	공통으로 적용할 때
+*/
+img{
+	width: 200px;
+	height: 250px;
+}
+ul{
+	color : red;
+	list-style-type: square;
+}

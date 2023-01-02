@@ -1,0 +1,154 @@
+<!-- 
+	css : HTML에 대한 디자인
+		=> html을 만들고 나중에 디자인을 처리할 수 있다.
+		=> 종류
+			1) 인라인 css -> 한개의 태그만 변경
+				<p style=""> : 모든 html 태그에는 style 속성을 가지고 있다
+			2) 내부 css
+				=> html,jsp파일 전체를 제어
+				=> <head>
+					  <style>
+					    css
+					</head>
+			3) 외부 css
+				=> 파일을 생성해서 전체 프로젝트에 공통으로 적용하는 css
+				=> <head>
+						<link rel="stylesheet" href="경로명 / 외부에서 원격">
+					</head>
+		=> 형식
+			css는 이미 지정된 속성에 값을 변경해서 사용 (사용자 정의가 존재하지 않는다)
+			css/html은 응용을 하지 않는다
+				---- 각 태그의 속성은 사용자 정의가 가능 => javascript 연결(ajax, vuejs,reactjs)
+			1) html에 css를 적용
+				=> 태그 선택자 : 자바스크립트, 크롤링, css(디자인)
+			2) 태그 선택자
+				=> 태그명 : 같은 이름의 태그가 많이 존재
+						  그래서 id, class 속성값 사용
+					id : 중복이 없는 아이디명을 가지고 있다.(한개씩 제어)
+					class : 중복이 있는 클래스명을 가지고 있다.(여러개 태그를 동시에 제어)
+					html의 모든 태그는 공통으로 적용되는 속성
+						ㄴ> id, class, name, style
+							---------------
+							=> 구분자
+							id, class : css/javascript(front)
+							name : java에서 입력값을 가지고 오는 경우
+			3) 선택자 사용 방법
+				=> 태그명
+					태그명{
+						css에서 지정하는 속성 : 값 ;
+					}
+					<style>
+						주석처리는 /* */
+					</style>
+					
+					예)
+						<p> Hello CSS!!</p>
+						<style>
+							p{
+								color(글자색상) : red , 16진법 => #FF0000 , rgb(255,0,0)
+								font-size:10px;
+							} // p태그는 이렇게 만들겠다
+						</style>
+					
+					
+				=> id가 있는 경우
+					<p>Hello CSS!!</p>
+					<p id="aaa">Hello CSS!!</p> => 이거 하나만 적용하고 싶으면 id 적용
+					<p id="bbb">Hello CSS!!</p>
+				
+					<style>
+						#aaa{
+							color: blue;
+						}
+						
+						* 혼합
+						#aaa,#bbb{
+							color : blue;
+						}
+					</style>
+					
+					<script>
+						JQuery , vuejs,reactjs : 선택자, 유효성검사 => not null
+						$('#aaa').click(function(){
+						})
+					</script>
+					
+					** id가 중복이 되면 html,css에서는 오류가 없지만 자바스크립트에서는 아예 처리가 안된다.
+					
+				=> class가 있는경우 : 태그를 동시에 제어
+					<p>Hello CSS!!</p>
+					<p class="aaa">Hello CSS!!</p>=> 
+											==> 두개를 동시에 제어하고 싶을 때
+					<p class="aaa">Hello CSS!!</p>=>
+					<p>Hello CSS!!</p>
+					<p>Hello CSS!!</p>
+					
+					<style>
+				 	  * .class명
+						.aaa{
+							css 속성 정의
+						}
+					  * 태그명.클래스명
+						p.aaa{
+						
+						}
+						크롤링 => 상위태그 태그명.클래스명...
+					</style>
+					img[src*=/recipe/] => src에 /recipe/가 있는 것 선택 (속성선택자) <-> 가상선택자
+					=> 속성은 어떤게 있는지 확인
+					
+					
+					
+					
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* 
+	내부css
+
+*/
+img{
+	width: 200px;
+	height: 250px;
+}
+ul{
+	color : red;
+	list-style-type: sqare;
+}
+</style>
+</head>
+<body>
+	<img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86689/86689_320.jpg">
+	<h1>장화신은 고양이-끝내주는 모험</h1>
+	<ul>
+		<li>예매율 5.5%</li>
+		<li>2023.01.04 개봉</li>
+		<li> 조엘 크로포드 </li>
+	</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
