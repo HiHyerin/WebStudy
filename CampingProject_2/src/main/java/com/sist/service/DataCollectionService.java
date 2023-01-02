@@ -121,14 +121,16 @@ public class DataCollectionService {
 					// 상세설명
 					Elements description=doc2.select("#contents > div > div.xans-element-.xans-product.xans-product-additional > div.cont.guide_100p > div:nth-child(2) > div.continner > img");
 					//Elements description=doc2.select("#contents > div > div.xans-element-.xans-product.xans-product-additional > div.cont.guide_100p > div:nth-child(2) > div.continner > div > p:nth-child(4) > img");
+					
 //					System.out.println(description.attr("continner"));
 					System.out.println(description.attr("src"));
 					
 					ivo.setDescription(description.attr("src"));
 					
 					// 상세설명2
+					Elements description_2=doc2.select("#contents > div > div.xans-element-.xans-product.xans-product-additional > div.cont.guide_100p > div:nth-child(2) > div.continner > img[hspace$=.jpg]");
 //					Elements description_2=doc2.select("#contents > div > div.xans-element-.xans-product.xans-product-additional > div.cont.guide_100p > div:nth-child(2) > div.continner > p > img");
-//					System.out.println("상세2:"+description_2.attr("src"));
+					System.out.println("상세2:"+description_2.attr("hspace"));
 					
 					// 재고stock
 					System.out.println(stock);
