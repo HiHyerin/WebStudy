@@ -1,0 +1,33 @@
+<!-- 
+	속성 선택자
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+/* 모든 태그에 해당 
+	*=> 이미지(2개)
+*/
+ div[id^=a],div[id^=c]{ /*=> a,c로 시작하는것*/
+	background-color:yellow; 
+}
+
+div[id$=o]{ /* o로 끝나는 것*/
+	background-color:green;
+}
+div[id*=b],div[id*=k]{ /*b나 k가 포함된 것*/
+	background-color: pink;
+}
+</style>
+</head>
+<body>
+	<div data-no="1" id="abc">java</div>
+	<div data-no="2" id="bcd">Oracle</div>
+	<div data-no="3" id="cdf">JavaScript</div>
+	<div data-no="4" id="dko">Spring</div>
+	<div data-no="5" id="ets">AWS</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- 
+	float: left
+	float: right
+	float:none;
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	width: 200px;
+	height: 100px;
+}
+
+div.a{
+	background-color: violet;
+	margin-right:10px;
+	margin-bottom:10px;
+	float: left;
+	padding: 20px;
+}
+div.b{
+	background-color: pink;
+	float: left;
+	margin-right:10px;
+	margin-bottom:10px;
+	padding: 20px;
+}
+div.c{
+	background-color: olive;
+	float: left;
+	margin-right:10px;
+	margin-bottom:10px;
+	padding: 20px;
+}
+div.d{
+	width:700px;
+	background-color: orange;
+	/*float: right;
+	padding: 20px; */
+	clear: both;
+	padding: 20px;
+	
+}
+</style>
+</head>
+<body>
+	<div class="a">float:left</div>
+	<div class="b">float:left</div>
+	<div class="c">float:right</div>
+	<div class="d">float:right</div>
+</body>
+</html>

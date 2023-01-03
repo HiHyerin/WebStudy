@@ -1,0 +1,133 @@
+<!-- 
+	p.126~127
+	=> 디자인할 태그를 선택(선택자)
+	1) 전체 선택자 (*) : 글꼴지정
+		*{
+			속성명 : 값(사용자)
+			----- 만들어져 있다(사용자 정의가 없다)
+		 }
+		 css의 핵심 => 선택자에 달려있다
+	2) 태그 선택자(태그명...) : 태그는 중복이 많다
+		태그명{
+			속성명: 값;
+			속성명: 값;
+		}
+	3) ID 선택자(모든 태그는 id 속성을 가지고 있다 => 중복이 없는 구분자)
+		<button id="btn">    => id는 일반 css에서는 사용빈도가 낮음, 자바스크립트에서는 자주 사용(jquery, vuejs, reactjs)
+							=> jquery : $('#btn').click(function(){}) => 동적
+							=> 일반 javascript : let btn=document.getElementByID('btn'); => 예매,결제,장바구니
+							=> 데이터수집
+								doc.select(String css) => doc.select("button#btn") : Jsoup(출력되어 있는 태그의 속성값, 태그 사이의 값)
+								
+		#btn{
+			속성명:값;
+		}
+		or
+		button#btn{
+			속성명:값;
+		}
+		***** id 속성은 반드시 입력값이 존재(Spring => id속성을 가지고 있는 xml)
+		***** xml기반 1. spring  2. mybatis  3. jpa
+		* 자바스크립트 -> 데이터 관리
+		
+	4) Class 선택자 : 가장 많이 등장하는 선택자 (중복이 가능)
+	   <div class="a"></div>
+	   <div class="a"></div>
+	   .a{
+	   }
+	   or
+	   div.a{
+	   		=> 권장사항
+	   }
+	---------------------------------속성(id,class(css/javascript),name(자바))
+										---------- ----
+										front      back
+	5) 복수형(여러개를 선택) : ,를 이용
+		<div id="a">
+		<div id="b">
+		id =============> #a,#b
+		
+		<div id="a">
+		<div id="b">
+		class ==========> .a,.b
+		
+		<div>
+		<span>
+		tag ============> div,span
+	  
+	6) 속성 선택자  =====> html(속성값을 출력 or 태그사이의 값 출력)
+		ex) <a href="값">daum</a>
+					--- -----
+				   속성값  ㄴ태그사이값
+		<a href="abcd">
+		<a href="anjk">
+		<a href="doolly">
+		<a href="skirt">
+		
+			=> a[href='abcd'] => input[type='button'],input[type='text']
+			=> a[href^='a'] => 속성값이 a로 시작하는 값 (<a href="abcd"> , <a href="anjk">) ex) a[href^='https|http'] : https나 http로 시작하는 값을 가져와라
+			=> a[href$='k'] => 속성값이 k로 끝나는 값 <a href="anjk"> 	ex) img[src$='jpg|png|gif']
+			=> a[href*='k'] => 속성값이 k가 포함된 값 <a href="anjk"> , <a href="skirt">
+		<img src="">
+		<img src="">
+		<img src="">
+		태그명[속성명='값']
+		----------------------------------------------------------
+	7) 자손 , 후손 선택자
+		<div>
+			<p></p>
+			<h1></h1>
+			<h1></h1>
+			<span>
+				<h1></h1>
+			</span>
+		</div>
+		
+					div
+					 |
+			--------------------
+			|	  |	  	 |		|
+			p	 h1	 	h1	   span  자손 div > h1
+								|
+								h1 	 후손 div h1 (div안에 있는 h1을 다 가져온다)
+		
+		
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+/*div > h1{
+	color:blue;
+}*/
+/*div h1{
+	color:green;
+}*/
+
+/*div > p+h1{  /*p태그 바로 옆에있는 h1태그값(인접한 태그, 형제)
+	color:pink;
+}*/
+div p~h1{ /*p태그 옆에 있는 모든 h1태그*/
+	color:blue;
+}
+</style>
+</head>
+<body>
+	<div>
+		<p>홍길동</p>
+		<h1>심청이</h1>
+		<h1>박문수</h1>
+		<span>
+			<h1>이순신</h1>
+		</span>
+	</div>
+</body>
+</html>
+
+
+
+
+
