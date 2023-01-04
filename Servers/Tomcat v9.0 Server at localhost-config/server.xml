@@ -152,7 +152,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="HTMLCSSProject4" path="/HTMLCSSProject4" reloadable="true" source="org.eclipse.jst.jee.server:HTMLCSSProject4"/></Host>
+      <Context docBase="HTMLCSSProject5" path="/HTMLCSSProject5" reloadable="true" source="org.eclipse.jst.jee.server:HTMLCSSProject5"/><Context docBase="HTMLCSSBootstripProject1" path="/HTMLCSSBootstripProject1" reloadable="true" source="org.eclipse.jst.jee.server:HTMLCSSBootstripProject1"/>
+      <Context docBase="JSPBasicProject1" path="/JSPBasicProject1" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject1">
+      	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdl="10" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="hr"/>
+      </Context>
+      <Context docBase="CampingProject_2" path="/CampingProject_2" reloadable="true" source="org.eclipse.jst.jee.server:CampingProject_2"/></Host>
     </Engine>
   </Service>
 </Server>
