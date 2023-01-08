@@ -30,7 +30,7 @@ h1{
 	<div class="container">
 		<h1>사원목록</h1>
 		<div class="row">
-			<table class="table table-hover">
+			<table class="table table-hover"> <!-- bootstript 클래스 hover: 갖다 댔을 때 색을 바꿔주는 것 -->
 				<tr class="danger">
 					<th class="text-center">사번</th>
 					<th class="text-center">이름</th>
@@ -40,6 +40,8 @@ h1{
 					<th class="text-center">급여</th>
 					<th class="text-center">성과급</th>
 					<th class="text-center">부서번호</th>
+					<th class="text-center">부서명</th>
+					<th class="text-center">근무지</th>
 				</tr>
 				<%
 					for(EmpVO vo:list){
@@ -49,7 +51,7 @@ h1{
 						<td class="text-center"><%=vo.getEname() %></td>
 						<td class="text-center"><%=vo.getJob() %></td>
 						<td class="text-center"><%=vo.getMgr() %></td>
-						<td class="text-center"><%=vo.getHiredate() %></td>
+						<td class="text-center"><%=vo.getHiredate().toString() %></td>
 						<td class="text-center"><%=vo.getSal() %></td>
 						<td class="text-center"><%=vo.getComm() %></td>
 						<td class="text-center"><%=vo.getDeptno() %></td>

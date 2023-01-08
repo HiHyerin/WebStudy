@@ -16,18 +16,18 @@ public class FoodDAO {
 	 	=> CategoryVO findByCno(int cno);
 	 */
 	
-	public void getConnection() { // 미리 만들어진 connection 객체를 가지고 온다
+	public void getConnection() { // 미리 만들어진 connection 객체를 가지고 온다(server.xml resource)
 		try {
-				// 등록된 위치로 접속
-				Context init=new InitialContext(); //JNDI(폴더형식)
-				Context c=(Context)init.lookup("java://comp/env");
-				DataSource ds=(DataSource)c.lookup("jdbc/oracle");
+				// 등록된 위치로 접속(dbcp형식)
+				Context init=new InitialContext(); //JNDI(메모리구조를 폴더형식으로 만듬, java naming directory interface)
+				Context c=(Context)init.lookup("java://comp/env"); // 폴더명
+				DataSource ds=(DataSource)c.lookup("jdbc/oracle"); // 폴더 밑 주소값
 				conn=ds.getConnection();
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		
-	}
+	
+	} 
 	
 	public void disConnection() { // 재사용하기 위해 반환
 		try {

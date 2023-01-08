@@ -65,9 +65,9 @@ public class EmpDAO {
 		ArrayList<EmpVO> list=new ArrayList<EmpVO>();
 		try {
 			getConnection();
-			String sql="select empno,ename,job,mgr,hiredate,sal,comm,deptno, dname,loc "
+			String sql="select empno,ename,job,mgr,hiredate,sal,comm,deptno,dname,loc "
 					+"From emp,dept "
-					+"where emp.deptno=depn.deptno";
+					+"where emp.deptno=dept.deptno";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {

@@ -194,11 +194,11 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<!-- header -->
+<!-- nav -->
 <jsp:include page="header.jsp"></jsp:include>
 <!-- home -->
 <jsp:include page="home.jsp"></jsp:include>
-<!--  -->
+
 
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>

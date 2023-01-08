@@ -147,7 +147,7 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
          <%
-           for(int i=0;i<12;i++)
+           for(int i=12;i<18;i++)
            {
               CategoryVO vo=list.get(i);
            
@@ -169,7 +169,7 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
          <%
-           for(int i=0;i<12;i++)
+           for(int i=18;i<30;i++)
            {
               CategoryVO vo=list.get(i);
            
