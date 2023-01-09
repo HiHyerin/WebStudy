@@ -20,7 +20,7 @@
 %>
 
 <!--  위와 같은 의미의 코딩
-	<jsp:useBean id="bean" class="com.sist.vo.MyBean">
+    <jsp:useBean id="bean" class="com.sist.vo.MyBean">
 		<jsp:setProperty name="bean" property="*"/>
 	</jsp:useBean>
  -->
