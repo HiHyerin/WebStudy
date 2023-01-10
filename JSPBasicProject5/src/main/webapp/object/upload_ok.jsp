@@ -6,7 +6,7 @@
 	try{
 		// 한글 변환
 		request.setCharacterEncoding("UTF-8");
-		int size=1024*1024*100;
+		int size=100*100*100;
 		String enctype="UTF-8";
 		String path=application.getRealPath("/object");
 		MultipartRequest mr = new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());

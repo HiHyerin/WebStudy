@@ -77,6 +77,161 @@ public class FoodDAO {
 			}
 			return list;
 		}
+		
+		 // 카테고리별 맛집 목록 출력
+		   public CategoryVO categoryInfoData(int cno)
+		   {
+		      CategoryVO vo  = new CategoryVO();
+		      try 
+		      {
+		         getConnection();
+		         String sql="SELECT title, subject "
+		               + "FROM project_category "
+		               + "WHERE cno =?";
+		         ps=conn.prepareStatement(sql);
+		         ps.setInt(1, cno);
+		         ResultSet rs =ps.executeQuery();
+		         rs.next();
+		         vo.setTitle(rs.getString(1));
+		         vo.setSubject(rs.getString(2));
+		         rs.close();      
+		         
+		      }catch(Exception ex)
+		      {
+		         ex.printStackTrace();
+		      }
+		      finally
+		      {
+		         disConnection();
+		      }   
+		      return vo;
+		   }
+		   // 맛집 목록
+		   public ArrayList<FoodVO> category_food_list(int cno)
+		   {
+		      ArrayList<FoodVO> list =new ArrayList<FoodVO>();
+		      try
+		      {
+		         getConnection();
+		         String sql ="SELECT fno, cno,name,poster,address, score, type,tel "
+		               + "FROM project_food "
+		               + "WHERE cno=?";
+		         ps= conn.prepareStatement(sql);
+		         ps.setInt(1, cno);
+		         ResultSet rs = ps.executeQuery();
+		         while(rs.next()) {
+		            FoodVO vo = new FoodVO();
+		            vo.setFno(rs.getInt(1));
+		            vo.setCno(rs.getInt(2));
+		            vo.setName(rs.getString(3));
+		            String poster =rs.getString(4);
+		            poster= poster.substring(0,poster.indexOf("^"));
+		            poster =poster.replace("#", "&");
+		            vo.setPoster(poster);
+		            String address =rs.getString(5);
+		            address=address.substring(0,address.indexOf("지"));
+		            vo.setAddress(address.trim());
+		            vo.setScore(rs.getDouble(6));
+		            vo.setType(rs.getString(7));
+		            vo.setTel(rs.getString(8));
+		            
+		            list.add(vo);
+		            
+		         }
+		               
+		      }catch(Exception ex)
+		      {
+		         ex.printStackTrace();
+		      }
+		      finally
+		      {
+		         disConnection();
+		      }
+		      return list;
+		   }
+		   
+		   // 로그인 처리
+		   public MemberVO isLogin(String id,String pwd) {
+			   MemberVO vo = new MemberVO();
+			   try {
+				   getConnection();
+				   String sql="select count(*) from jsp_member "
+						   +"where id=?";
+				   // 1. 아이디 유무확인
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, id);
+				   ResultSet rs=ps.executeQuery();
+				   rs.next();
+				   int count=rs.getInt(1);
+				   rs.close();
+				   
+				   if(count==0) { //id가 없는 상태
+					   vo.setMsg("NOID");
+				   }else {// id가 존재하는 상태
+					   sql="select pwd,name,sex from jsp_member "
+							   +"where id=?";
+					   ps=conn.prepareStatement(sql);
+					   ps.setString(1, id);
+					   rs=ps.executeQuery();
+					   rs.next();
+					   String db_pwd=rs.getString(1);
+					   String name=rs.getString(2);
+					   String sex=rs.getString(3);
+					   rs.close();
+					   
+					   if(pwd.equals(db_pwd)) { // 로그인 상태
+						   vo.setMsg("OK");
+						   vo.setName(name);
+						   vo.setSex(sex);
+					   }else { // 비밀번호가 틀린 상태
+						   vo.setMsg("NOPWD");
+					   }
+				   }
+						   
+			   }catch(Exception ex) {
+				   ex.printStackTrace();
+			   }finally {
+				   disConnection();
+			   }
+			   return vo;
+		   }
+		   
+		   
+		   // 상세보기
+		   public FoodVO foodDetailData(int fno) {
+			   FoodVO vo = new FoodVO();
+			   try {
+				   getConnection();
+				   String sql="select fno,name,score,poster,tel,type,time,parking,menu, good,soso,bad,price,address "
+						   + "from project_food "
+						   + "where fno=?";
+					ps=conn.prepareStatement(sql);
+					ps.setInt(1, fno);
+					ResultSet rs=ps.executeQuery();
+					rs.next();
+					vo.setFno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+					vo.setScore(rs.getDouble(3));
+					vo.setPoster(rs.getString(4));
+					vo.setTel(rs.getString(5));
+					vo.setType(rs.getString(6));
+					vo.setTime(rs.getString(7));
+					vo.setParking(rs.getString(8));
+					vo.setMenu(rs.getString(9));
+					vo.setGood(rs.getInt(10));
+					vo.setSoso(rs.getInt(11));
+					vo.setBad(rs.getInt(12));
+					vo.setPrice(rs.getString(13));
+					vo.setAddress(rs.getString(14));
+					rs.close();
+			   }catch(Exception ex) {
+				   ex.printStackTrace();
+			   }finally {
+				   disConnection();
+			   }
+			   return vo;
+		   }
+
 }
 
 

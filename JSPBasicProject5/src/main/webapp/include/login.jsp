@@ -7,24 +7,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="table">
-		<tr>
-			<td width=30% class-"text-right">ID</td>
-			<td width=70%>
-			<input type=text name=id size=15 class="input-sm">
-		</tr>
-		<tr>
-			<td width=30% class-"text-right">PWD</td>
-			<td width=70%>
-			<input type=password name=pwd size=15 class="input-sm">
-		</tr>
-		<tr>
-			<td colspan="2" class="text-right">
-				<button class="btn btn-sm btn-danger">로그인</button>
-			</td>
-		</tr>
-		
-		
-	</table>
+   <form method="post" action="login_ok.jsp">
+   <table class="table">
+     <tr>
+       <td width=30% class="text-right">ID</td>
+       <td width=70%>
+         <input type="text" name=id size=15 class="input-sm">
+       </td>
+     </tr>
+     <tr>
+       <td width=30% class="text-right">PW</td>
+       <td width=70%>
+         <input type="password" name=pwd size=15 class="input-sm">
+       </td>
+     </tr>
+     <tr>
+       <td colspan="2" class="text-right">
+         <button class="btn btn-sm btn-danger">로그인</button>
+       </td>
+     </tr>
+   </table>
+   </form>
 </body>
 </html>

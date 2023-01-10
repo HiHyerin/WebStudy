@@ -21,9 +21,9 @@
 	<div style="height: 10px"></div>
 	<div class="row">
 		<div class="text-center">
-	     <a href="../food/category.jsp?cate=1" class="btn btn-sm btn-danger">믿고보는 맛집 리스트</a>
-	     <a href="../food/category.jsp?cate=2" class="btn btn-sm btn-info">지역별 맛집 리스트</a>
-	     <a href="../food/category.jsp?cate=3" class="btn btn-sm btn-success">메뉴별 인기 맛집 리스트</a>
+	     <a href="main.jsp?cate=1" class="btn btn-sm btn-danger">믿고보는 맛집 리스트</a>
+	     <a href="main.jsp?cate=2" class="btn btn-sm btn-info">지역별 맛집 리스트</a>
+	     <a href="main.jsp?cate=3" class="btn btn-sm btn-success">메뉴별 인기 맛집 리스트</a>
 	    </div>
 	   </div>
 	   <div style="height: 10px"></div>
@@ -33,8 +33,8 @@
 		%>
 				<div class="col-md-4">
 				    <div class="thumbnail">
-				      <a href="#">
-				        <img src="<%=vo.getPoster() %>" alt="<%=vo.getSubject() %>" style="width:100%">
+				      <a href="main.jsp?mode=1&cno=<%=vo.getCno()%>">
+				        <img src="<%=vo.getPoster() %>" title="<%=vo.getSubject() %>" style="width:100%">
 				        <div class="caption">
 				          <p><%=vo.getTitle() %></p>
 				        </div>

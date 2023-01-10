@@ -31,8 +31,8 @@
 	<%--log => web.xml을 읽어 온다(xml이나, 한글변환 등록) --%>
 	<!-- 
 	<context-param>
-	  	<param-name>driver</param-name>
-	  	<param-value>oracle.jebc.driver.OracleDriver</param-value>
+	  	<param-name>driver</param-name> ==> key
+	  	<param-value>oracle.jebc.driver.OracleDriver</param-value>  ==> value
   	</context-param>
 	 -->
 	<% //web.xml에 등록된 값을 읽을 수 있다
