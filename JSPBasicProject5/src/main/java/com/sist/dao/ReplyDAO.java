@@ -133,7 +133,7 @@ public class ReplyDAO {
 				getConnection();
 				String sql="delete from jsp_reply "
 						+"where no=?";
-				ps.getConnection().prepareStatement(sql);
+				ps=conn.prepareStatement(sql);
 				ps.setInt(1, no);
 				ps.executeUpdate();
 						
