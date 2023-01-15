@@ -19,15 +19,15 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner">
 		    <div class="item active">
-		      <img src="../images/shop.png" alt="쇼핑" style="width:1200px;height:700px">
+		      <img src="../images/shop.png" title="쇼핑" style="width:1200px;height:700px">
 		    </div>
 		
 		    <div class="item">
-		      <img src="../images/tr.jpg" alt="여행" style="width:1200px;height:700px">
+		      <img src="../images/tr.jpg" title="여행" style="width:1200px;height:700px">
 		    </div>
 		
 		    <div class="item">
-		      <img src="../images/loc.jpg" alt="명소" style="width:1200px;height:700px">
+		      <img src="../images/loc.jpg" title="명소" style="width:1200px;height:700px">
 		    </div>
 		  </div>
 		

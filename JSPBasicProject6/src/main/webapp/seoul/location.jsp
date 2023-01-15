@@ -31,6 +31,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="row">
@@ -59,7 +60,7 @@
               if(startPage>1)
               {
           %>
-                 <li><a href="../main/main.jsp?mode=1&page=<%=startPage-1%>">&lt;</a></li>
+                 <li><a href="../main/main.jsp?mode=1&page=<%=startPage-1%>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
           <%
               }
           %>
@@ -76,7 +77,7 @@
 		      if(endPage<totalpage)
 		      {
 		  %>
-		       <li><a href="../main/main.jsp?mode=1&page=<%=endPage+1%>">&gt;</a></li>
+		       <li><a href="../main/main.jsp?mode=1&page=<%=endPage+1%>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
 		  <%
 		      }
 		  %>

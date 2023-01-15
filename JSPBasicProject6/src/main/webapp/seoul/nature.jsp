@@ -33,7 +33,7 @@
                   <a href="#">
                     <img src="<%=vo.getPoster() %>" style="width:260px; height:260px">
                     <div class="caption">
-                      <p><%=vo.getTitle() %></p>
+                      <p style="font-size: 9px;font-weight: bold"><%=vo.getTitle() %></p>
                     </div>
                   </a>
                 </div>

@@ -1,13 +1,13 @@
-<%@page import="com.sist.vo.FoodVO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*,com.sist.vo.*"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+	
 	ArrayList<FoodVO> list=null;
 	FoodDAO dao = new FoodDAO();
 	String addr = request.getParameter("addr");
 	String strPage = request.getParameter("page");
-	if(strPage!=null)
+	if(strPage==null)
 		strPage="1";
 	int curpage=Integer.parseInt(strPage);
 	if(addr==null)
@@ -22,18 +22,20 @@
 	if(endPage>totalpage)
 		endPage=totalpage;
 	
+	int count = dao.foodFindCount(addr);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="row">
 		<form method=post action="../main/main.jsp"> <%--get방식과 post방식은 함께 사용x --%>
 			<input type=hidden name=mode value="4"> <%--get방식? --%>
-			검색 : <input type="text" name=addr size=30 class="input-sm" value="<%= addr!=null?addr:"" %>" >
+			검색 : <input type=text name=addr size=30 class="input-sm" value="<%= addr!=null?addr:"" %>" >
 			<button class="btn btn-sm btn-danger">검색</button>
 		</form>
 	</div>
@@ -71,7 +73,7 @@
 				<%
 					if(startPage>1){
 				%>
-						<li><a href="../main/main.jsp?mode=4&page=<%=startPage-1 %>">&lt;</a></li>
+						<li><a href="../main/main.jsp?mode=4&page=<%=startPage-1%>&addr=<%=addr%>">&lt;</a></li>
 				<%
 					}
 				%>

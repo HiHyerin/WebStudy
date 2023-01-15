@@ -5,7 +5,7 @@
 	// 자바에서 오라클에 있는 데이터를 읽어 온다
 	// 1. 사용자가 보내준 값을 받는다 : page
  	String strPage=request.getParameter("page");
-	if(strPage==null){ // 첫 페이지
+	if(strPage==null)// 첫 페이지
 		strPage="1";
 	int curpage=Integer.parseInt(strPage);
 	
@@ -15,7 +15,7 @@
 	// 총페이지
 	int totalpage = dao.seoulTotalPage("shop");
 	
-	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@
 <body>
 	<div class="row">
 		<%
-			for(SeoulVO vo : list){
+			for(SeoulVO vo:list){
 		%>
 				<div class="col-md-3"> <!-- 3을 주면 4등분 => 총 12개? -->
                 <div class="thumbnail">
