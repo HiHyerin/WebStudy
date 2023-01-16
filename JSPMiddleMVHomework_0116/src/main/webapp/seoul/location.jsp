@@ -27,6 +27,21 @@
   </style>
 </head>
 <body>
+	<div class="row">
+		<c:forEach var="vo" items="${list }">
+			<div class="col-md-3"> <!-- 3을 주면 4등분 => 총 12개? -->
+                <div class="thumbnail">
+                  <a href="#">
+                    <img src="${vo.poster }" style="width:260px; height:260px">
+                    <div class="caption">
+                      <p style="font-size: 9px; font-weight: bold">${vo.title }</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+		</c:forEach>
+	</div>
 	
+
 </body>
 </html>

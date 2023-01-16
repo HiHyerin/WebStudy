@@ -49,16 +49,26 @@ MSG     NOT NULL VARCHAR2(4000)
 ADDRESS NOT NULL VARCHAR2(300)  
 HIT              NUMBER  
 	 */
-	public ArrayList<SeoulVO> seoulListData() {
+	public ArrayList<SeoulVO> seoulListData(int page, String tab) {
 		ArrayList<SeoulVO> list = new ArrayList<SeoulVO>();
 		try {
 			getConnection();
-			String sql = "select no, title, poster "
-					+"from seoul_location order by no ASC ";
+			String sql="select no,title,poster, num "
+					+"from (select no,title,poster,rownum as num "
+					+"from (select no,title,poster "
+					+"from seoul_" + tab + " order by no ASC)) "
+					+"where num between ? and ?";
 					
 			
 			// 오라클 전송
 			ps = conn.prepareStatement(sql);
+			
+			// ?에 값
+			int rowSize=20;
+			int start=(rowSize*page) - (rowSize-1); // 1 , 21 , 41, ...
+			int end = rowSize * page; //20 , 40 , 50
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 			
 			// 결과값 받기
 			ResultSet rs = ps.executeQuery();
@@ -83,4 +93,25 @@ HIT              NUMBER
 		}
 		return list;
 	}
+	
+	
+	// 총페이지//////////////////////////
+		public int seoulTotalPage(String tab) {
+			int total=0;
+			try {
+				getConnection();
+				String sql="select ceil(count(*)/20.0) "
+						+"from seoul_"+tab;
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				total=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection();
+			}
+			return total;
+		}
 }
