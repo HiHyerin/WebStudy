@@ -18,5 +18,114 @@ public class BoardModel {
 		ArrayList<BoardVO> list = dao.boardListData(curpage);
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("list", list); //jsp에 전송 
+		request.setAttribute("msg", "관리자가 삭제한 게시물입니다");
 	}
+	
+	public void boardInsert(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		String pwd = request.getParameter("pwd");
+		
+		BoardVO vo = new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		
+		//dao 연동
+		BoardDAO dao = new BoardDAO();
+		dao.boardInsert(vo);
+	}
+	
+	public void boardDetailData(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		BoardDAO dao = new BoardDAO();
+		BoardVO vo = dao.boardDetailData(Integer.parseInt(no), 1);
+		request.setAttribute("vo", vo); // jsp(list)로 값이 넘어가는것
+	}
+	
+	
+	public void boardReplyInsert(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		String pwd = request.getParameter("pwd");
+		String pno = request.getParameter("pno");
+		
+		BoardVO vo = new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		
+		BoardDAO dao = new BoardDAO();
+		dao.boardReplyInsert(Integer.parseInt(pno), vo);
+
+	}
+	
+	public void boardUpdateData(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		BoardDAO dao = new BoardDAO();
+		BoardVO vo = dao.boardDetailData(Integer.parseInt(no), 2);
+		request.setAttribute("vo", vo); // jsp(list)로 값이 넘어가는것
+	}
+	
+	public void boardUpdate(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		String pwd = request.getParameter("pwd");
+		String no = request.getParameter("no");
+		
+		BoardVO vo = new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		vo.setNo(Integer.parseInt(no));
+		
+		BoardDAO dao = new BoardDAO();
+		boolean bCheck = dao.boardUpdate(vo);
+		
+		String msg = "";
+		if(bCheck==true)
+			msg = "yes";
+		else
+			msg="no";
+		request.setAttribute("msg", msg);
+		request.setAttribute("no", no); // insert_ok.jsp로 보냄?
+	}
+	
+	public void boardDelete(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		String pwd = request.getParameter("pwd");
+		BoardDAO dao = new BoardDAO();
+		boolean bCheck = dao.boardDelete(Integer.parseInt(no), pwd);
+		request.setAttribute("bCheck", bCheck); // true,false
+		
+	}
+	
 }
+
+
+
+
+
+
+

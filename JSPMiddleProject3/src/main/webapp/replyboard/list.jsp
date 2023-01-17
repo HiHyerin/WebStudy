@@ -5,6 +5,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="model" class="com.sist.model.BoardModel"/>
 	<%--BoardModel model = new BoardModel() --%>
+	<%-- 
+		출력형식 : EL
+		${출력물} => 일반 변수가 아니다
+					request.getAttribute("key") => request.setAttribute("key","value")
+					  => ${requestScope.key}
+					  	   ------------
+					  	     생략가능 = ${key}
+					session.getAttribute("key") => session.setAttribute("key","value")
+					  => ${sessionScope.key}
+	--%>
 <%
 	model.boardListData(request, response);
 %>
@@ -27,7 +37,8 @@
   </style>
 </head>
 <body>
-	<div class="container text-center">
+	<div class="container">
+     <div class="row">
 		<img src="qna.png" style="width: 300px;height: 300px;">
 		
 	</div>
@@ -36,7 +47,7 @@
 		<table class="table">
 			<tr>
 				<td>
-					<a href="#" class="btn btn-sm btn-danger">새글</a>
+					<a href="insert.jsp" class="btn btn-sm btn-danger">새글</a>
 				</td>
 			</tr>
 		</table>
@@ -59,7 +70,17 @@
 						</c:forEach>
 						<img src="re_icon.png">
 					</c:if>
-					${vo.subject }
+					
+					<c:if test="${vo.subject==msg }">
+						<span style="color:gray">${vo.subject }</span>
+					</c:if>
+					
+					<c:if test="${vo.subject!=msg }">
+						<a href="detail.jsp?no=${vo.no }">${vo.subject }</a>
+					</c:if>
+					
+					
+					<a href="detail.jsp?no=${vo.no}">${vo.subject }</a>
 					&nbsp;
 					<c:if test="${today==vo.dbday }">
 						<sup><img src="new.gif"></sup>
@@ -71,7 +92,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
+		</div>
 	</div>
 </body>
 </html>
