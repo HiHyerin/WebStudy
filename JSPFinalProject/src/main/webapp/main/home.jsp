@@ -40,7 +40,7 @@
       <li class="one_third">
         <article class="service"><i class="icon fa fa-hospital-o"></i>
           <h6 class="heading"><a href="#">레시피</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
+          <p>레시피를 소개합니다.</p>
           <footer><a href="#">Read More &raquo;</a></footer>
         </article>
       </li>
@@ -51,8 +51,8 @@
         <c:forEach var="vo" items="${list }" varStatus="s"> <%--list의 index번호 --%>
         	<c:if test="${ s.index>=0 && s.index<12}">
 		        <li>
-		          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-		            <figcaption><a href="#">${vo.title }</a></figcaption>
+		          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
+		            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
 		          </figure>
 		        </li>
 		      </c:if>
@@ -66,8 +66,8 @@
         <c:forEach var="vo" items="${list }" varStatus="s"> <%--list의 index번호 --%>
         	<c:if test="${ s.index>=12 && s.index<18}">
 		        <li>
-		          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-		            <figcaption><a href="#">${vo.title }</a></figcaption>
+		          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
+		            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
 		          </figure>
 		        </li>
 		      </c:if>
@@ -81,8 +81,8 @@
         <c:forEach var="vo" items="${list }" varStatus="s"> <%--list의 index번호 --%>
         	<c:if test="${ s.index>=18 && s.index<30}">
 		        <li>
-		          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-		            <figcaption><a href="#">${vo.title }</a></figcaption>
+		          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
+		            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
 		          </figure>
 		        </li>
 		      </c:if>

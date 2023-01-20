@@ -18,7 +18,7 @@ public class GoodsModel {
    @RequestMapping("goods/goods_all.do")
    public String goodsAll(HttpServletRequest request,HttpServletResponse response)
    {
-      String page=request.getParameter("page");
+      String page = request.getParameter("page");
       if(page==null)
          page="1";
   
@@ -111,8 +111,8 @@ public class GoodsModel {
   
       int curpage=Integer.parseInt(page);
       GoodsDAO dao=new GoodsDAO();      
-      ArrayList<GoodsVO> list=dao.goodsNewListData(curpage);
-      int totalpage=dao.goodsNewTotalPage();
+      ArrayList<GoodsVO> list=dao.goodsSpecialListData(curpage);
+      int totalpage=dao.goodsSpecialTotalPage();
       
       final int BLOCK=10;
       int startPage=((curpage-1)/BLOCK*BLOCK)+1;

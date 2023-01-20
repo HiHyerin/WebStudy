@@ -27,7 +27,9 @@ public class GoodsDAO {
 			ps.setInt(1, start);
 			ps.setInt(2, end);
 			ResultSet rs = ps.executeQuery();
+//			System.out.println("rs:"+rs);
 			while(rs.next()) {
+				System.out.println(rs.getInt(1));
 				GoodsVO vo = new GoodsVO();
 				vo.setNo(rs.getInt(1));
 				vo.setGoods_name(rs.getString(2));

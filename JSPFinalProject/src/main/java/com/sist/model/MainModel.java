@@ -7,6 +7,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -14,6 +15,10 @@ import com.sist.vo.*;
 public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(HttpServletRequest request, HttpServletResponse response) {
+//		HttpSession session = request.getSession();
+//		session.setAttribute("id", "hong");
+//		session.setAttribute("admin", "y"); //header에서 설정
+		
 		FoodDAO dao = new FoodDAO();
 		ArrayList<CategoryVO> list = dao.foodCategoryData();
 		request.setAttribute("list", list); // home.jsp에서 처리
