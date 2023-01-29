@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sist.dao.*;
-										  
-							 
+import com.sist.dao.*;										  						 
 import com.sist.vo.*;
 
 @Controller
@@ -23,7 +21,10 @@ public class GoodsModel {
          page="1";
   
       int curpage=Integer.parseInt(page);
+      
+      // 오라클 연결
       GoodsDAO dao=new GoodsDAO();      
+      // 데이터 읽기
       ArrayList<GoodsVO> list=dao.goodsAllListData(curpage);
       int totalpage=dao.goodsAllTotalPage();
       
