@@ -7,6 +7,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 로그인 버튼
+	$('#logBtn').click(function(){
+		// id, pwd => Model로 전송
+		let id = $('#log_id').val();
+		if(id.trim()===""){
+			$('#log_id').focus();
+			return;
+		}
+		let pwd = $('#log_pwd').val();
+		
+		if(pwd.trim() === ""){
+			$('#log_pwd').focus();
+			return;
+		}
+		
+		$.ajax({
+			type: 'post',
+			url: '../member/login.do', // id, pwd를 login.do에 보내겠다 (model로 이동)
+			data:{"id":id, "pwd":pwd},
+			success: function(result){
+				//NOID , NOPWD , OK
+				let res = result.trim();
+				if(res === 'NOID'){ // id가 틀림
+					alert("아이디가 존재하지 않습니다.")
+					$('#log_id').val(""); // id지움
+					$('#log_pwd').val("");
+					$('#log_id').focus();
+				
+				}else if(res==='NOPWD'){ // pwd 틀림
+					alert("비밀번호가 틀립니다.")
+					$('#log_pwd').val("");
+					$('#log_pwd').focus();
+				
+				}else{ // 로그인
+					location.href="../main/main.do";
+				}
+			}
+		})
+	})
+	
+	// 로그아웃 버튼
+	$('#logoutBtn').click(function(){
+		$.ajax({
+			type: 'post',
+			url: '../member/logout.do', // id, pwd를 login.do에 보내겠다 (model로 이동)
+			success:function(result){
+				locatio.href="../main/main.do";
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 <div class="wrapper row1">
@@ -15,12 +70,22 @@
       <h1><a href="../main/main.do">서울 맛집 & 서울 여행</a></h1>
     </div>
     <div class="fl_right">
+    <!-- 로그인 안된 상태 -->
+     <c:if test="${sessionScope.id == null }">
       <ul class="inline">
-        <li>ID  <input type="text" name=id size=10 class="input-sm" placeholder=" ID"></li>
-        <li>PW  <input type="password" name=pwd size=10 class="input-sm" placeholder=" Password"></li>
-        <li><input type="button" class="btn btn-lg btn-danger" value="로그인"></li>
+        <li>ID&nbsp;&nbsp;  <input type="text" name=id size=10 class="input-sm" id="log_id"></li>
+        <li>PW&nbsp;&nbsp;  <input type="password" name=pwd size=10 class="input-sm" id="log_pwd"></li>
+        <li><input type="button" class="btn btn-lg btn-danger" value="로그인" id="logBtn"></li>
       </ul>
+      </c:if>
       
+      <!-- 로그인 된 상태 -->
+      <c:if test="${sessionScope.id != null }">
+       <ul class="inline">
+        <li>${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다.</li>
+        <li><input type="button" class="btn btn-lg btn-primary" value="로그아웃" id="logoutBtn"></li>
+      </ul>
+      </c:if>
     </div>
   </header>
 </div>
@@ -31,7 +96,7 @@
       <li><a class="drop" href="#">회원</a>
         <c:if test="${sessionScope.id==null }"> <%--로그인이 안된 상태 --%>
 	        <ul>
-	          <li><a href="pages/gallery.html">회원가입</a></li>
+	          <li><a href="../member/join.do">회원가입</a></li>
 	          <li><a href="pages/full-width.html">아이디찾기</a></li>
 	          <li><a href="pages/sidebar-left.html">비밀번호찾기</a></li>
 	        </ul>

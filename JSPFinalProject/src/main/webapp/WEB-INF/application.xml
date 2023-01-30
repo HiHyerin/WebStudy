@@ -7,5 +7,6 @@
 	<bean class="com.sist.model.GoodsModel"/>
 	<bean class="com.sist.model.FreeBoardModel"/>
 	<bean class="com.sist.model.RecipeModel"/>
+	<bean class="com.sist.model.MemberModel"/>
 	
 </beans>

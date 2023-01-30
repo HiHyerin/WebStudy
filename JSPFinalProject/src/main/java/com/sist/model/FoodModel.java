@@ -43,6 +43,7 @@ public class FoodModel {
       request.setAttribute("ss", ss);
       
 	  request.setAttribute("main_jsp", "../food/food_location.jsp");
+	  CommonsModel.footerData(request);
       return "../main/main.jsp";
       
    }
@@ -69,6 +70,7 @@ public class FoodModel {
 	   
 	   // include 하는 파일 전송
 	   request.setAttribute("main_jsp", "../food/food_list.jsp");
+	   CommonsModel.footerData(request);
 	   return "../main/main.jsp";
 	   
    }
@@ -91,6 +93,7 @@ public class FoodModel {
 	   
 	   // 화면 출력
 	   request.setAttribute("main_jsp", "../food/food_detail.jsp");
+	   CommonsModel.footerData(request);
 	   return "../main/main.jsp";
    }
    

@@ -58,6 +58,7 @@ public class FreeBoardModel {
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		//============================================JSP출력을 위해 전송되는 데이터
 		request.setAttribute("main_jsp", "../freeboard/list.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -66,6 +67,7 @@ public class FreeBoardModel {
 		
 		
 		request.setAttribute("main_jsp", "../freeboard/insert.jsp"); // 화면출력
+		CommonsModel.footerData(request);
 		return"../main/main.jsp"; // request => main.jsp.forward(request)
 	}
 	
@@ -100,6 +102,7 @@ public class FreeBoardModel {
 		FreeBoardVO vo = dao.boardDetailData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../freeboard/detail.jsp"); // 클릭시마다 데이터가 틀린경우
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }
