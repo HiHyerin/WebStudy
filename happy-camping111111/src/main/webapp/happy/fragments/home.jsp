@@ -1,0 +1,224 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+
+<!-- category css -->
+<link rel="stylesheet" href="/assets/project/main/css/category.css">
+<!-- slider css -->
+<link rel="stylesheet" href="/assets/slick/css/slick.css">
+<link rel="stylesheet" href="/assets/slick/css/slick-theme.css">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+	    <!-- main slider -->
+	    <div class="main-slider">
+	        <div>
+	            <img src="/assets/images/main/main-01.jpg">
+	        </div>
+	        <div>
+	            <img src="/assets/images/main/main-02.jpg">
+	        </div>
+	        <div>
+	            <img src="/assets/images/main/main-03.jpg">
+	        </div>
+	        <div>
+	            <img src="/assets/images/main/main-04.jpg">
+	        </div>
+	    </div>
+	    <div class="m-auto">
+	        <div class="mt-5">
+	            <span class="display-6">브랜드 상품 퀵메뉴</span>
+	            <div class="brand-menu-slider">
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_001.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_002.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_003.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_004.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_005.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_006.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_007.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_008.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_009.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_010.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_011.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_012.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_013.png">
+	                </div>
+	                <div class="border">
+	                    <img src="/assets/images/main/brand/brand_014.png">
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div style=" height:5px"></div>
+	    <div class="m-auto">
+	        <div class="mt-5">
+	            <span class="display-6">초특가 상품</span>
+	            <!-- 초특가 상품 slider -->
+	            <div class="sale-item-slider">
+	                <c:forEach var="hotSaleItem" items="${hotSaleItems}">
+	                    <div class="col">
+	                        <div class="card shadow-sm">
+	                            <div class="card-img-top" width="100%" height="100%">
+	                                <img class="m-auto" src="${hotSaleItem.image}" width="312"/>
+	                            </div>
+	                            <div class="card-body">
+	                                <p class="card-text text-truncate">${hotSaleItem.name}</p>
+	                                <div class="d-flex position-relative">
+	                                    <p class="align-items-center text-danger display-6 flex-shrink-0 mb-0 me-2">
+	                                            ${hotSaleItem.sale}%
+	                                    </p>
+	                                    <div>
+	                                        <p class="text-decoration-line-through mb-0">
+	                                            <fmt:formatNumber value="${hotSaleItem.price}" pattern="#,###"/>원 <br/>
+	                                        </p>
+	                                        <fmt:formatNumber value="${hotSaleItem.price * ((100 - hotSaleItem.sale) * 0.01)}" pattern="#,###"/>원
+	                                    </div>
+	                                </div>
+	                                <span>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	    <div style=" height:5px"></div>
+	    <div class="m-auto mb-3">
+	        <div class="mt-5">
+	            <span class="display-6">따끈따끈한 신규상품을 만나보세요!</span>
+	            <!-- 신규상품 슬라이더 -->
+	            <div class="new-item-slider">
+	                <c:forEach var="newItem" items="${newItems}">
+	                    <div class="col">
+	                        <div class="card shadow-sm">
+	                            <div class="card-img-top" width="100%" height="100%">
+	                                <img class="m-auto" src="${newItem.image}" width="312"/>
+	                            </div>
+	                            <div class="card-body">
+	                                <p class="card-text text-truncate">${newItem.name}</p>
+	                                <p class="card-text">
+	                                    <fmt:formatNumber value="${newItem.price}" pattern="#,###"/>원
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	     <div style=" height:30px"></div>
+	     <div class="container">
+	        <div class=" row" >
+	        <div class="col-lg-6 col-md-6 col-12">
+	         <div class="m-auto mb-3">
+	        <div class="mt-6">
+	            <span class="display-6">재입고 상품</span>
+	            <!-- 재입고 상품 슬라이더 -->
+	            <div class="main-slider">
+	                <c:forEach var="newItem" items="${newItems}">
+	                    <div class="col">
+	                        <div class="card shadow-sm">
+	                            <div class="card-img-top" width="100%" height="100%">
+	                                <img class="m-auto" src="${newItem.image}" width="312"/>
+	                            </div>
+	                            <div class="card-body">
+	                                <p class="card-text text-truncate">${newItem.name}</p>
+	                                <p class="card-text">
+	                                    <fmt:formatNumber value="${newItem.price}" pattern="#,###"/>원
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	    </div>
+	    <!-- ////////////////// --> 
+	    <div class="col-lg-6 col-md-6 col-12">
+	         <div class="m-auto mb-3">
+	        <div class="mt-6">
+	            <span class="display-6">추천 상품</span>
+	            <!-- 추천상품 슬라이더 -->
+	            <div class="main-slider">
+	                <c:forEach var="newItem" items="${newItems}">
+	                    <div class="col">
+	                        <div class="card shadow-sm">
+	                            <div class="card-img-top" width="100%" height="100%">
+	                                <img class="m-auto" src="${newItem.image}" width="312"/>
+	                            </div>
+	                            <div class="card-body">
+	                                <p class="card-text text-truncate">${newItem.name}</p>
+	                                <p class="card-text">
+	                                    <fmt:formatNumber value="${newItem.price}" pattern="#,###"/>원
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	    </div>
+	      </div>
+	    </div>
+	    <!-- 분할 창 끝 -->
+	    <div style=" height:5px"></div>
+	    <div class="m-auto mb-3">
+	        <div class="mt-5">
+	            <span class="display-6">베스트 캠핑장</span>
+	            <!-- 신규상품 슬라이더 -->
+	            <div class="new-item-slider">
+	                <c:forEach var="campItems" items="${campItems}">
+	                    <div class="col">
+	                        <div class="card shadow-sm">
+	                            <div class="card-img-top" width="100%" height="100%">
+	                                <img class="m-auto" src="${campItems.image}" width="312" height="300"/>
+	                            </div>
+	                            <div class="card-body">
+	                                <p class="card-text text-truncate">${campItems.name}</p>
+	                                <%-- <p class="card-text">
+	                                    <fmt:formatNumber value="${newItem.price}" pattern="#,###"/>원
+	                                </p> --%>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>
