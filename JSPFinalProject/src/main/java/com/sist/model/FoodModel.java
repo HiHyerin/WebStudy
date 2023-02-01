@@ -93,9 +93,26 @@ public class FoodModel {
 	   
 	   // 화면 출력
 	   request.setAttribute("main_jsp", "../food/food_detail.jsp");
+	   AllReplyDAO adao = new AllReplyDAO();
+	   List<AllReplyVO> rList = adao.allReplyListData(Integer.parseInt(fno), 2);
+	   request.setAttribute("rList", rList);
+	   request.setAttribute("count", rList.size());
+	   
+	   String type = vo.getType();
+	   int index = type.indexOf('/');
+	   if(index>-1) {
+		   type = type.replace('/', '|'); // 한식 / 백반 -> 한식 | 백반
+		   
+	   }
+	   List<RecipeVO> nList = dao.food_recipe_data(type);
+	   request.setAttribute("nList", nList);
+	   
 	   CommonsModel.footerData(request);
 	   return "../main/main.jsp";
    }
+   
+   
+   
    
 }
 

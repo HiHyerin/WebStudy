@@ -213,7 +213,7 @@ public class MemberDAO {
 					vo.setMsg("OK");
 					vo.setId(db_id);
 					vo.setName(db_name);
-					vo.setAddr1(db_admin);
+					vo.setAdmin(db_admin);
 				}else { // 비번 틀린 상태
 					vo.setMsg("NOPWD");
 				}

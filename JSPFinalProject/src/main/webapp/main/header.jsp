@@ -56,7 +56,7 @@ $(function(){
 			type: 'post',
 			url: '../member/logout.do', // id, pwd를 login.do에 보내겠다 (model로 이동)
 			success:function(result){
-				locatio.href="../main/main.do";
+				location.href="../main/main.do";
 			}
 		})
 	})
@@ -73,8 +73,8 @@ $(function(){
     <!-- 로그인 안된 상태 -->
      <c:if test="${sessionScope.id == null }">
       <ul class="inline">
-        <li>ID&nbsp;&nbsp;  <input type="text" name=id size=10 class="input-sm" id="log_id"></li>
-        <li>PW&nbsp;&nbsp;  <input type="password" name=pwd size=10 class="input-sm" id="log_pwd"></li>
+      	<li>아이디<input type=text name=id size=10 class="input-sm" id="log_id"></li>
+        <li>비밀번호<input type=password name=pwd size=10 class="input-sm" id="log_pwd"></li>
         <li><input type="button" class="btn btn-lg btn-danger" value="로그인" id="logBtn"></li>
       </ul>
       </c:if>
@@ -147,20 +147,20 @@ $(function(){
       </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
-          <li><a href="pages/gallery.html">공지사항</a></li>
+          <li><a href="../notice/list.do">공지사항</a></li>
         
             <li><a href="../freeboard/list.do">자유게시판</a></li>
           <c:if test="${sessionScope.id!=null }">
-            <li><a href="pages/sidebar-left.html">후기게시판</a></li>
+            <li><a href="pages/sidebar-left.html">묻고답하기</a></li>
           </c:if>
         </ul>
       </li>
       <c:if test="${sessionScope.id!=null }">
          <c:if test="${sessionScope.admin=='n' }">
-        <li><a href="#">마이페이지</a></li>
+        <li><a href="../mypage/mypage_main.do">마이페이지</a></li>
       </c:if>
        <c:if test="${sessionScope.admin=='y' }">
-          <li><a href="#">관리자페이지</a></li>
+          <li><a href="../adminpage/admin_main.do">관리자페이지</a></li>
        </c:if>
        </c:if>
     </ul>

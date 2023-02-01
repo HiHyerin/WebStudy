@@ -75,7 +75,7 @@ public class MemberModel {
   public String member_tel_check(HttpServletRequest request,HttpServletResponse response) {
 	  String phone = request.getParameter("phone");
 	  MemberDAO dao = new MemberDAO();
-	  int count = dao.memberEmailCheck(phone);
+	  int count = dao.memberPhoneCheck(phone);
 	  request.setAttribute("count", count);
 	  return "../member/tel_check.jsp";
   }

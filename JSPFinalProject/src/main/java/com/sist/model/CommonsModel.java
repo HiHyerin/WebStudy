@@ -16,6 +16,7 @@ public class CommonsModel {
 			request.setAttribute("nList", nList);
 			
 			// 뉴스출력 => naver
+		
 		}
 	
 }

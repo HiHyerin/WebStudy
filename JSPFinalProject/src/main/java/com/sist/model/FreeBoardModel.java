@@ -59,6 +59,7 @@ public class FreeBoardModel {
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		//============================================JSP출력을 위해 전송되는 데이터
 		request.setAttribute("main_jsp", "../freeboard/list.jsp");
+		//System.out.println("프리보드모델델델/////////////////////////////////////////");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
