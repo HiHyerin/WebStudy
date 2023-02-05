@@ -1,13 +1,19 @@
 package com.sist.vo;
 
 public class FoodVO {
-	private int fno, cno, good, soso, bad, jjim_count, like_count, hit;
+	private int fno, cno, good, soso, bad, count;
 	
 	private double score;
 	private String poster,name,address,tel,type,price,parking,menu,time;
 	
 	
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getCno() {
 		return cno;
 	}

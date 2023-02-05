@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.filters.RemoteIpFilter.XForwardedRequest;
+
 import com.sist.dao.*;										  						 
 import com.sist.vo.*;
 
@@ -134,6 +136,18 @@ public class GoodsModel {
       request.setAttribute("main_jsp", "../goods/goods_special.jsp");// main.jsp에서 include되는
       CommonsModel.footerData(request);
       return "../main/main.jsp";
+   }
+   
+   @RequestMapping("goods/goods_detail.do")
+   public String goods_detail(HttpServletRequest request,HttpServletResponse response) {
+	   String no = request.getParameter("no"); // 클라이언트가 주고
+	   GoodsDAO dao = new GoodsDAO();
+	   GoodsVO vo = dao.goodsDetailData(Integer.parseInt(no));
+	   request.setAttribute("vo", vo); // 받고
+	   
+	   request.setAttribute("main_jsp", "../goods/goods_detail.jsp");
+	   CommonsModel.footerData(request);
+	   return "../main/main.jsp";
    }
    
 }

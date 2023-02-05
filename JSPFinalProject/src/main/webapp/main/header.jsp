@@ -82,7 +82,7 @@ $(function(){
       <!-- 로그인 된 상태 -->
       <c:if test="${sessionScope.id != null }">
        <ul class="inline">
-        <li>${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다.</li>
+        <li>${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다.</li>
         <li><input type="button" class="btn btn-lg btn-primary" value="로그아웃" id="logoutBtn"></li>
       </ul>
       </c:if>
@@ -97,15 +97,15 @@ $(function(){
         <c:if test="${sessionScope.id==null }"> <%--로그인이 안된 상태 --%>
 	        <ul>
 	          <li><a href="../member/join.do">회원가입</a></li>
-	          <li><a href="pages/full-width.html">아이디찾기</a></li>
-	          <li><a href="pages/sidebar-left.html">비밀번호찾기</a></li>
+	          <li><a href="../member/idfind.do">아이디찾기</a></li>
+	          <li><a href="../member/pwdfind.do">비밀번호찾기</a></li>
 	        </ul>
         </c:if>
         
         <c:if test="${sessionScope.id!=null }">
 	         <ul>
-	          <li><a href="pages/gallery.html">회원수정</a></li>
-	          <li><a href="pages/full-width.html">회원탈퇴</a></li>
+	          <li><a href="../member/join_update.do">회원수정</a></li>
+	          <li><a href="../member/join_delete.do">회원탈퇴</a></li>
 	        </ul>
         </c:if>      
       </li>
@@ -115,7 +115,7 @@ $(function(){
           <li><a href="../food/food_location.do">지역별맛집검색</a></li>
           <c:if test="${sessionScope.id!=null }">
 	          <li><a href="pages/full-width.html">맛집추천</a></li>
-	          <li><a href="pages/sidebar-left.html">맛집예약</a></li>
+	          <li><a href="../reserve/reserve_main.do">맛집예약</a></li>
           </c:if>
         </ul>
       </li>
@@ -125,7 +125,7 @@ $(function(){
           <li><a href="../seoul/seoul_list.do?type=2">자연&관광</a></li>
           <li><a href="../seoul/seoul_list.do?type=3">쇼핑</a></li>
           <li><a href="../seoul/seoul_list.do?type=4">호텔</a></li>
-          <li><a href="../seoul/seoul_list.do?type=5">게스트하우스</a></li>
+          <li><a href="../seoul/seoul_weather.do">오늘의 날씨</a></li>
          <c:if test="${sessionScope.id!=null }">
           <li><a href="pages/sidebar-left.html">여행코스</a></li>
          </c:if>

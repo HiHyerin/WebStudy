@@ -56,8 +56,6 @@ public class NoticeDAO {
 					+"from project_notice)) "
 					+"where num between ? and ?";
 			
-			System.out.println("noticeListDatd SQL: "+sql);
-			
 			ps = conn.prepareStatement(sql);
 			int rowSize=10;
 			int start = (rowSize*page)-(rowSize-1);
@@ -76,7 +74,6 @@ public class NoticeDAO {
 				vo.setHit(rs.getInt(6));
 				list.add(vo);
 			}
-			System.out.println("noticeListDatd list: "+list);
 			rs.close();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -105,5 +102,156 @@ public class NoticeDAO {
 		}
 		return total;
 	}
+	
+	/*
+	 이름      널?       유형             
+	------- -------- -------------- 
+	NO      NOT NULL NUMBER         
+	TYPE             NUMBER         
+	NAME    NOT NULL VARCHAR2(34)   
+	SUBJECT NOT NULL VARCHAR2(1000) 
+	CONTENT NOT NULL CLOB           
+	REGDATE          DATE           
+	HIT              NUMBER
+	
+	 * 오라클 : join(inner, outer), Subquery
+	 		  view(inline view) => Top n
+	 
+	 * 자바 : 변수, 연산자, 제어문, 메소드
+	 		 라이브러리 : Collection, java.util.*, java.lang.*
+	 
+	 * JSP : 내장객체 (request, response, session, cookie)
+	 		 el, jstl, mvc
+	 
+	 * JS : 변수, 연산자, 제어문, 함수, JQuery, Ajax
+	 
+	 * DAO(DBCP) => mybatis => jpa
+	 * MVC => Spring => Spring-Boot
+	 * Jquery => Vue => react
+	*/
+	
+	public void noticeInsert(NoticeVO vo) {
+		try {
+			conn = CreateConnection.getConnection();
+			
+			String sql = "insert into project_notice values( "
+					+"(select nvl(max(no)+1,1) from project_notice),?,?,?,?,SYSDATE, 0)";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, vo.getType());
+			ps.setString(2, vo.getName());
+			ps.setString(3, vo.getSubject());
+			ps.setString(4, vo.getContent());
+			ps.executeUpdate(); //commit
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+		
+		public void noticeDelete(int no) {
+			try {
+				conn = CreateConnection.getConnection();
+				
+				String sql = "delete from project_notice "
+						+"where no = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				
+				ps.executeUpdate(); //commit
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+		}
+		
+		public NoticeVO noticeUpdateData(int no) {
+			NoticeVO vo = new NoticeVO();
+			try {
+				conn = CreateConnection.getConnection();
+				
+				String sql = "select no,name, subject, content, type "
+						+"from project_notice "
+						+"where no=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				vo.setNo(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setType(rs.getInt(5));
+				rs.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+			return vo;
+		}
+		
+		public void noticeUpdate(NoticeVO vo) {
+			try {
+				conn = CreateConnection.getConnection();
+				String sql = "update project_notice set "
+						+"type=?, subject=?, content=? "
+						+"where no=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, vo.getType());
+				ps.setString(2, vo.getSubject());
+				ps.setString(3, vo.getContent());
+				ps.setInt(4, vo.getNo());
+				ps.executeUpdate();
+						
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+		}
+		
+		public NoticeVO noticeDetailData(int no) {
+			NoticeVO vo = new NoticeVO();
+			try {
+				conn = CreateConnection.getConnection();
+				
+				String sql = "update project_notice set "
+						+"hit = hit+1 "
+						+"where no=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+				
+				
+				sql = "select no,name, subject, content, type, hit, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS') "
+						+"from project_notice "
+						+"where no=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				vo.setNo(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setType(rs.getInt(5));
+				vo.setHit(rs.getInt(6));
+				vo.setDbday(rs.getString(7));
+				rs.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+			return vo;
+		}
 
 }

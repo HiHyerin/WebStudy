@@ -15,10 +15,10 @@ public class AdminModel {
 	private String[] prefix= {"","일반공지","이벤트공지","맛집공지","여행공지","상품공지"};
 	
 	
+	
 	@RequestMapping("adminpage/admin_main.do")
 	public String admin_main(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("admin_main 들어옴////////////////////////////////////////////////////////");////////////////////////////////////////////////////////
 		request.setAttribute("admin_jsp", "./admin_home.jsp");
 		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		
@@ -42,6 +42,7 @@ public class AdminModel {
 				for(NoticeVO vo:list) {
 					vo.setPrefix("["+prefix[vo.getType()]+"]");
 				}   
+				System.out.println("for loop 이후");
 				int totalpage = dao.noticeTotalPage();
 				
 				request.setAttribute("list", list);
@@ -50,7 +51,6 @@ public class AdminModel {
 				request.setAttribute("admin_jsp", "../adminpage/notice_list.jsp");
 				request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 				
-				System.out.println("어드민 노티스리스트 출력////////////////////////////////////////////////////////");////////////////////////////////////////////////////////
 				CommonsModel.footerData(request);
 				return "../main/main.jsp";
 	}
@@ -65,4 +65,90 @@ public class AdminModel {
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("adminpage/notice_insert_ok.do")
+	public String admin_notice_insert_ok(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		// 사용자가 전송한 데이터 받기
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception e) {}
+		
+		String type = request.getParameter("type");
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		
+		NoticeVO vo = new NoticeVO();
+		vo.setType(Integer.parseInt(type));
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		
+		// dao연결
+		NoticeDAO dao = new NoticeDAO();
+		dao.noticeInsert(vo);
+		
+		return "redirect:notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_delete.do")
+	public String admin_notice_delete(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		
+		// dao 연동
+		NoticeDAO dao = new NoticeDAO();
+		dao.noticeDelete(Integer.parseInt(no));
+		
+		return "redirect:notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_update.do")
+	public String admin_notice_update(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		
+		// dao 연동
+		NoticeDAO dao = new NoticeDAO();
+		NoticeVO vo = dao.noticeUpdateData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		
+		// include => request를 공유
+		request.setAttribute("admin_jsp", "../adminpage/notice_update.jsp");
+		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+		
+	}
+	
+	@RequestMapping("adminpage/notice_update_ok.do")
+	public String admin_notice_update_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {}
+		
+		String type = request.getParameter("type");
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		String no = request.getParameter("no");
+		NoticeVO vo = new NoticeVO();
+		vo.setType(Integer.parseInt(type));
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setNo(Integer.parseInt(no));
+		
+		NoticeDAO dao = new NoticeDAO();
+		dao.noticeUpdate(vo);
+		
+		return "redirect:notice_list.do";
+	}
 }
+
+
+
+
+
+
+

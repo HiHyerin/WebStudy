@@ -5,8 +5,10 @@ import com.sist.controller.RequestMapping;
 
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.vo.*;
 import com.sist.dao.*;
@@ -67,6 +69,12 @@ public class FoodModel {
 	   CategoryVO vo = dao.categoryInfoData(Integer.parseInt(cno));
 	   request.setAttribute("vo", vo);
 	   
+	   //좋아요 개수출력//////////////////////////////////////////
+	   LikeDAO ldao = new LikeDAO();
+	   for(FoodVO fvo:list) {
+		   fvo.setCount(ldao.foodLikeCount(fvo.getFno()));
+	   }
+	   
 	   
 	   // include 하는 파일 전송
 	   request.setAttribute("main_jsp", "../food/food_list.jsp");
@@ -74,6 +82,27 @@ public class FoodModel {
 	   return "../main/main.jsp";
 	   
    }
+   
+   @RequestMapping("food/food_before_detail.do")
+   public String food_before_detail(HttpServletRequest request, HttpServletResponse response) {
+	   HttpSession session = request.getSession();
+	   String id = (String)session.getAttribute("id");
+	   String user="";
+	   if(id==null) // id별로 쿠키 구분하기 위해 쓰는것 조건을 안걸면 모든 사람의 쿠키값이 저장된다.
+		   user = "guest";
+	   else
+		   user=id;
+	   
+	   String fno = request.getParameter("fno");
+	   try {
+		Cookie cookie = new Cookie(user+"_food"+fno, fno);
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
+	} catch (Exception e) {}
+	   return "redirect:../food/food_detail.do?fno="+fno;
+   }
+   
    
    @RequestMapping("food/food_detail.do")
    public String food_detail(HttpServletRequest request, HttpServletResponse response) {
@@ -105,8 +134,26 @@ public class FoodModel {
 		   
 	   }
 	   List<RecipeVO> nList = dao.food_recipe_data(type);
-	   request.setAttribute("nList", nList);
+	   request.setAttribute("nList1", nList);
 	   
+	   
+	   // 찜하기 ///////////////////////////////////
+	   HttpSession session = request.getSession();
+	   String id = (String)session.getAttribute("id");
+	   JjimDAO jdao = new JjimDAO();
+	   int jcount = jdao.jjimCount(Integer.parseInt(fno), id);
+	   
+	   request.setAttribute("jjim_count", jcount);
+	   /////////////////////////////////////////////
+	   
+	   // 좋아요 ///////////////////////////////////
+	   LikeDAO ldao = new LikeDAO();
+	   int mc = ldao.myLikeCount(Integer.parseInt(fno), id);
+	   //int tc = ldao.likeCount();
+	   int tc= ldao.foodLikeCount(Integer.parseInt(fno));
+	   request.setAttribute("like_count", mc);
+	   request.setAttribute("like_total", tc);
+	  /////////////////////////////////////////////
 	   CommonsModel.footerData(request);
 	   return "../main/main.jsp";
    }

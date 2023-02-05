@@ -229,8 +229,184 @@ public class MemberDAO {
 	}
 	
 	
-	// 3. 회원수정
-	// 4. ID 찾기
-	// 5. PWD 찾기
-	// 6. 회원탈퇴
+	// 3. 회원수정 /////////////////////////////////////////////////////////
+	public MemberVO memberJoinUpdateData(String id) {
+		MemberVO vo = new MemberVO();
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select id, name, sex, birthday, email, post, addr1, addr2, phone, content "
+					+"from project_member "
+					+"where id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			vo.setId(rs.getString(1));
+			vo.setName(rs.getString(2));
+			vo.setSex(rs.getString(3));
+			vo.setBirthday(rs.getString(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPost(rs.getString(6));
+			vo.setAddr1(rs.getString(7));
+			vo.setAddr2(rs.getString(8));
+			vo.setPhone(rs.getString(9));
+			vo.setContent(rs.getString(10));
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		
+		return vo;
+	}
+	
+	// 실제 회원수정 //
+	public boolean memberJoinUpdate(MemberVO vo) {
+		boolean bCheck = false;
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select pwd from project_member "
+					+"where id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String db_pwd = rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd())) {
+				bCheck = true;
+				sql = "update project_member set "
+						+"name=?,sex=?, email=?, phone=?, content=?, birthday=?, "
+						+"post=?, addr1=?, addr2=? "
+						+"where id=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSex());
+				ps.setString(3, vo.getEmail());
+				ps.setString(4, vo.getPhone());
+				ps.setString(5, vo.getContent());
+				ps.setString(6, vo.getBirthday());
+				ps.setString(7, vo.getPost());
+				ps.setString(8, vo.getAddr1());
+				ps.setString(9, vo.getAddr2());
+				ps.setString(10, vo.getId());
+				ps.executeUpdate();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
+	
+	
+	
+	// 4. ID 찾기 /////////////////////////////////////////////////////////
+	public String memberIdfind(String tel) {
+		String result="";
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select count(*) from project_member "
+					+"where phone=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, tel);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			rs.close();
+			
+			if(count == 0) {
+				result="NO";
+			}else {
+				sql = "SELECT RPAD(substr(id,1,1),LENGTH(id), '*') from project_member "
+						+"where phone=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, tel);
+				rs=ps.executeQuery();
+				rs.next();
+				result = rs.getString(1);
+				rs.close();
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+		
+	}
+	
+	public String memberEmailfind(String email) {
+		String result="";
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select count(*) from project_member "
+					+"where email=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			rs.close();
+			
+			if(count == 0) {
+				result="NO";
+			}else {
+				sql = "SELECT RPAD(substr(id,1,1),LENGTH(id), '*') from project_member "
+						+"where email=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, email);
+				rs=ps.executeQuery();
+				rs.next();
+				result = rs.getString(1);
+				rs.close();
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+		
+	}
+	// 5. PWD 찾기 =>  /////////////////////////////////////////////////////////
+	// 6. 회원탈퇴 /////////////////////////////////////////////////////////
+	public boolean memberJoinDelete(String id, String pwd) {
+		boolean bCheck = false;
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select pwd from project_member "
+					+"where id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String db_pwd = rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(pwd)) {
+				bCheck = true;
+				sql = "delete from project_member "
+						+"where id=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ps.executeUpdate();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 }
