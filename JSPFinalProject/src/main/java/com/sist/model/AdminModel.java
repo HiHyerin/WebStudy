@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.NoticeDAO;
+import com.sist.dao.ReserveDAO;
 import com.sist.vo.NoticeVO;
 
 @Controller
@@ -144,6 +145,8 @@ public class AdminModel {
 		
 		return "redirect:notice_list.do";
 	}
+	
+
 }
 
 
